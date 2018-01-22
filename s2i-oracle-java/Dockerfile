@@ -22,7 +22,7 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
 
 # Need to install Yum Base Packages, and Java
 RUN yum repolist > /dev/null && \
-    subscription-manager repos --enable rhel-7-server-restricted-maintenance-oracle-java-rpms && \
+    yum-config-manager --enable rhel-7-server-restricted-maintenance-oracle-java-rpms && \
     yum clean all && \
     INSTALL_PKGS="tar \
     unzip \
