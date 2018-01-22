@@ -5,8 +5,8 @@ ENV MAVEN_VERSION="3.3.3" \
     JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
    # JAVA_VENDOR="openjdk" \
    # JAVA_VERSION="1.8.0" \
-    JAVA_VERSION 8u45 \
-    BUILD_VERSION b14 \
+    JAVA_VERSION=8u45 \
+    BUILD_VERSION=b14 \
     PATH=$PATH:"/usr/local/s2i" \
     AB_JOLOKIA_AUTH_OPENSHIFT="true" \
     AB_JOLOKIA_PASSWORD_RANDOM="true" \
