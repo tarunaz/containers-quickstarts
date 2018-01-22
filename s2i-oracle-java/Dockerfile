@@ -3,8 +3,10 @@ FROM rhel:7.2
 ENV MAVEN_VERSION="3.3.3" \
     JOLOKIA_VERSION="1.3.5" \
     JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
-    JAVA_VENDOR="openjdk" \
-    JAVA_VERSION="1.8.0" \
+   # JAVA_VENDOR="openjdk" \
+   # JAVA_VERSION="1.8.0" \
+    JAVA_VERSION 8u45 \
+    BUILD_VERSION b14 \
     PATH=$PATH:"/usr/local/s2i" \
     AB_JOLOKIA_AUTH_OPENSHIFT="true" \
     AB_JOLOKIA_PASSWORD_RANDOM="true" \
@@ -19,22 +21,16 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       io.openshift.expose-services="8080,8778" \
       org.jboss.deployments-dir="/deployments"
 
-
-# Need to install Yum Base Packages, and Java
-RUN yum repolist > /dev/null && \
-    yum-config-manager --enable rhel-7-server-restricted-maintenance-oracle-java-rpms && \
+# Install JDK
+RUN yum install -y wget && \
+    wget --no-cookies --no-check-certificate \
+        --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+        "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" \
+        -O /tmp/jdk-8-linux-x64.rpm && \
+    yum install -y /tmp/jdk-8-linux-x64.rpm && \
+    yum remove -y wget && \
     yum clean all && \
-    INSTALL_PKGS="tar \
-    unzip \
-    wget \
-    which \
-    yum-utils \
-    rsync \
-    java-1.8.0-oracle \
-    java-1.8.0-oracle-devel" && \
-    yum install -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all && \
+    rm -fr /tmp/jdk-8-linux-x64.rpm
     
     # Add Java User
     groupadd -r java -g 1000 && \
