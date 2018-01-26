@@ -38,10 +38,7 @@ RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-li
     ln -s /opt/maven/bin/mvn /usr/bin/mvn && \
     
          
-    echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security
-
-ADD jolokia-opts /opt/jolokia/jolokia-opts
-ADD jolokia.properties /opt/jolokia/etc/jolokia.properties
+    # echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security
 
 COPY run-java.sh run-env.sh debug-options container-limits java-default-options /opt/run-java/
 RUN chmod 755 /opt/run-java/run-java.sh /opt/run-java/run-env.sh /opt/run-java/java-default-options /opt/run-java/container-limits /opt/run-java/debug-options
