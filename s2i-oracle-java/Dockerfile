@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/rhscl/s2i-base-rhel7
 
 ENV MAVEN_VERSION="3.3.3" \
   # JOLOKIA_VERSION="1.3.5" \
-    JAVA_HOME="/usr/lib/jvm/jdk1.8.0_102" \
+    JAVA_HOME=$HOME/jdk1.8.0_102
     PATH=$PATH:$JAVA_HOME/bin:"/usr/local/s2i" \
     JAVA_VERSION="1.8.0" \
   # AB_JOLOKIA_AUTH_OPENSHIFT="true" \
@@ -17,16 +17,14 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       io.openshift.s2i.destination="/tmp" \
       io.openshift.expose-services="8080,8778" \
       org.jboss.deployments-dir="/deployments"
-    
-USER root
 
-# Install JDK
-RUN mkdir /usr/lib/jvm && \
-    wget -P /usr/lib/jvm http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
-    ls -ltr && tar -zxvf /usr/lib/jvm/jdk-8u102-linux-x64.tar.gz && \
-    ls -ltr && rm /usr/lib/jvm/jdk-8u102-linux-x64.tar.gz && \
+RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
+    ls -ltr && tar -zxvf jdk-8u102-linux-x64.tar.gz && \
+    ls -ltr && rm jdk-8u102-linux-x64.tar.gz && \
+ 
+   # rm /usr/lib/jvm/jdk-8u102-linux-x64.tar.gz && \
     
-    # Add Java User
+   # Add Java User
    # groupadd -r java -g 1000 && \
    # useradd -u 185 -r -g root -m -d /opt/java -s /sbin/nologin -c "Java user" java && \
    # usermod -a -G java java && \
