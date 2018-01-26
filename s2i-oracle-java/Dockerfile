@@ -18,6 +18,8 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       io.openshift.expose-services="8080,8778" \
       org.jboss.deployments-dir="/deployments"
     
+USER root
+
 # Install JDK
 RUN mkdir /usr/lib/jvm && \
     wget -P /usr/lib/jvm http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
