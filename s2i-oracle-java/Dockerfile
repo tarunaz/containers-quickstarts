@@ -1,4 +1,4 @@
-FROM rhel:7.2
+FROM registry.access.redhat.com/rhscl/s2i-base-rhel7
 
 ENV MAVEN_VERSION="3.3.3" \
     JOLOKIA_VERSION="1.3.5" \
