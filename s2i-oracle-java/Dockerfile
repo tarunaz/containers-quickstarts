@@ -52,8 +52,8 @@ RUN chmod 755 /usr/local/s2i/*
 ADD README.md /usr/local/s2i/usage.txt
 
 RUN mkdir -p /deployments/data && \
- chmod -R "g+rwX" /deployments && \
- chown -R java:root /deployments
+ chmod -R "g+rwX" /deployments
+# chown -R java:root /deployments
  
 COPY settings.xml /opt/java/.m2/settings.xml
 
