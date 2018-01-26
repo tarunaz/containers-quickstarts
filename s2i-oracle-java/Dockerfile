@@ -20,20 +20,6 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       io.openshift.s2i.destination="/tmp" \
       io.openshift.expose-services="8080,8778" \
       org.jboss.deployments-dir="/deployments"
-
-# Need to install Yum Base Packages, and Java
-RUN yum repolist > /dev/null && \
-    yum-config-manager --enable rhel-7-server-optional-rpms && \
-    yum clean all && \
-    INSTALL_PKGS="tar \
-    unzip \
-    wget \
-    which \
-    yum-utils \
-    rsync" && \
-    yum install -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all && \
     
 # Install JDK
 RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
@@ -41,9 +27,9 @@ RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-li
     ls -ltr && rm jdk-8u102-linux-x64.tar.gz 
     
     # Add Java User
-    groupadd -r java -g 1000 && \
-    useradd -u 185 -r -g root -m -d /opt/java -s /sbin/nologin -c "Java user" java && \
-    usermod -a -G java java && \
+   # groupadd -r java -g 1000 && \
+   # useradd -u 185 -r -g root -m -d /opt/java -s /sbin/nologin -c "Java user" java && \
+   # usermod -a -G java java && \
     
     # Install Maven
     curl https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | \
