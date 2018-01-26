@@ -3,11 +3,13 @@ FROM registry.access.redhat.com/rhscl/s2i-base-rhel7
 ENV MAVEN_VERSION="3.3.3" \
   # JOLOKIA_VERSION="1.3.5" \
     JAVA_HOME=$HOME/jdk1.8.0_102 \
-    PATH=$PATH:$JAVA_HOME/bin:"/usr/local/s2i" \
+    PATH=$PATH:"/usr/local/s2i":$JAVA_HOME/bin \
     JAVA_VERSION="1.8.0" \
   # AB_JOLOKIA_AUTH_OPENSHIFT="true" \
   # AB_JOLOKIA_PASSWORD_RANDOM="true" \
    JAVA_DATA_DIR=/deployments/data
+
+echo $PATH
 
 # Some version information
 LABEL io.k8s.description="Platform for building and running plain Java applications" \
