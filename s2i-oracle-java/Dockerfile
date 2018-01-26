@@ -32,13 +32,13 @@ RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-li
    # usermod -a -G java java && \
     
     # Install Maven
-    curl https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | \
+RUN curl https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | \
     tar -xzf - -C /opt && \
     ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven && \
     ln -s /opt/maven/bin/mvn /usr/bin/mvn && \
     
     # Install Jolokia
-    mkdir -p /opt/jolokia && \
+RUN mkdir -p /opt/jolokia && \
     curl http://central.maven.org/maven2/org/jolokia/jolokia-jvm/${JOLOKIA_VERSION}/jolokia-jvm-${JOLOKIA_VERSION}-agent.jar \
          -o /opt/jolokia/jolokia.jar && \
          
