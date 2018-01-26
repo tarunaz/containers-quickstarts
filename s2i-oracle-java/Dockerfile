@@ -30,7 +30,7 @@ RUN yum repolist > /dev/null && \
     wget \
     which \
     yum-utils \
-    rsync \
+    rsync && \
     yum install -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all && \
