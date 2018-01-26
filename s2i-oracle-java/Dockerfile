@@ -22,15 +22,9 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       org.jboss.deployments-dir="/deployments"
 
 # Install JDK
-RUN yum install -y wget && \
-    wget --no-cookies --no-check-certificate \
-        --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-        "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" \
-        -O /tmp/jdk-8-linux-x64.rpm && \
-    yum install -y /tmp/jdk-8-linux-x64.rpm && \
-    yum remove -y wget && \
-    yum clean all && \
-    rm -fr /tmp/jdk-8-linux-x64.rpm
+RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
+    ls -ltr && tar -zxvf jdk-8u102-linux-x64.tar.gz && \
+    ls -ltr && rm jdk-8u102-linux-x64.tar.gz
     
     # Add Java User
     groupadd -r java -g 1000 && \
