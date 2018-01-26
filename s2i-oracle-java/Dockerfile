@@ -27,9 +27,9 @@ RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-li
     ls -ltr && rm jdk-8u102-linux-x64.tar.gz 
     
     # Add Java User
-    groupadd -r java -g 1000 && \
-    useradd -u 185 -r -g root -m -d /opt/java -s /sbin/nologin -c "Java user" java && \
-    usermod -a -G java java && \
+    /usr/sbin/groupadd -r java -g 1000 && \
+    /usr/sbin/useradd -u 185 -r -g root -m -d /opt/java -s /sbin/nologin -c "Java user" java && \
+    /usr/sbin/usermod -a -G java java && \
     
     # Install Maven
     curl https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | \
