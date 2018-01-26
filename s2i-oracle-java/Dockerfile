@@ -35,7 +35,7 @@ RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-li
     curl https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | \
     tar -xzf - -C /opt && \
     ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven && \
-    ln -s /opt/maven/bin/mvn /usr/bin/mvn && \
+    ln -s /opt/maven/bin/mvn /usr/bin/mvn
     
          
     # echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security
