@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/rhscl/s2i-base-rhel7
 
 ENV MAVEN_VERSION="3.3.3" \
   # JOLOKIA_VERSION="1.3.5" \
-    JAVA_HOME=$HOME/jdk1.8.0_102
+    JAVA_HOME=$HOME/jdk1.8.0_102 \
     PATH=$PATH:$JAVA_HOME/bin:"/usr/local/s2i" \
     JAVA_VERSION="1.8.0" \
   # AB_JOLOKIA_AUTH_OPENSHIFT="true" \
