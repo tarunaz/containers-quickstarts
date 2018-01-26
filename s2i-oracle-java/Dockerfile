@@ -9,7 +9,7 @@ ENV MAVEN_VERSION="3.3.3" \
   # AB_JOLOKIA_PASSWORD_RANDOM="true" \
    JAVA_DATA_DIR=/deployments/data
 
-echo $PATH
+RUN echo $PATH
 
 # Some version information
 LABEL io.k8s.description="Platform for building and running plain Java applications" \
@@ -55,12 +55,12 @@ RUN mkdir -p /deployments/data && \
  chmod -R "g+rwX" /deployments
 # chown -R java:root /deployments
  
-COPY settings.xml /opt/java/.m2/settings.xml
+#COPY settings.xml /opt/java/.m2/settings.xml
 
 # S2I requires a numeric, non-0 UID. This is the UID for the java user in the base image
 USER 185
 
-WORKDIR /opt/java
+WORKDIR $HOME
 
 # Use the run script as default since we are working as an hybrid image which can be
 # used directly to. (If we were a plain s2i image we would print the usage info here)
