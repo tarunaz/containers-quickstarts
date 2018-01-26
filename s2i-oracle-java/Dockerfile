@@ -1,4 +1,4 @@
-FROM rhel:7.2
+FROM registry.access.redhat.com/rhscl/s2i-base-rhel7
 
 ENV MAVEN_VERSION="3.3.3" \
     JOLOKIA_VERSION="1.3.5" \
@@ -22,12 +22,9 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       org.jboss.deployments-dir="/deployments"
 
 # Install JDK
-RUN yum install -y wget && \
-     RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
-         ls -ltr && tar -zxvf jdk-8u102-linux-x64.tar.gz && \
-         ls -ltr && rm jdk-8u102-linux-x64.tar.gz \
-     yum remove -y wget && \
-     yum clean all
+RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
+    ls -ltr && tar -zxvf jdk-8u102-linux-x64.tar.gz && \
+    ls -ltr && rm jdk-8u102-linux-x64.tar.gz 
     
     # Add Java User
     groupadd -r java -g 1000 && \
