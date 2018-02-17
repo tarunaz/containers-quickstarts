@@ -21,6 +21,7 @@ LABEL io.k8s.description="Platform for building and running plain Java applicati
       io.openshift.expose-services="8080,8778" \
       org.jboss.deployments-dir="/deployments"
 
+# Install Java
 RUN wget http://durahc1mn01-stg.corp.netapp.com/extra-packages/java/jdk-8u102-linux-x64.tar.gz && \
     ls -ltr && tar -zxvf jdk-8u102-linux-x64.tar.gz && \
     ls -ltr && rm jdk-8u102-linux-x64.tar.gz && \
